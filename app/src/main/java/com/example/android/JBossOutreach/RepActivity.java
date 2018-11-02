@@ -31,7 +31,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -99,13 +98,14 @@ public class RepActivity extends AppCompatActivity
                 Rep currentRep = mAdapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
-                Uri repUri = Uri.parse(currentRep.getUrl());
-
+                String url = "https://api.github.com/repos/JBossOutreach/" + currentRep.getName();
+                url = url + "/contributors";
                 // Create a new intent to view the rep URI
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, repUri);
+               Intent i = new Intent(RepActivity.this, ContributersActivity.class);
+               i.putExtra("ContributersUrl",url);
 
                 // Send the intent to launch a new activity
-                startActivity(websiteIntent);
+                RepActivity.this.startActivity(i);
             }
         });
 

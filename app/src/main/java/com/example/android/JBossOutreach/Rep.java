@@ -29,10 +29,9 @@ public class Rep {
     /**
      * Constructs a new {@link Rep} object.
      *
-     * @param name is the magnitude (size) of the earthquake
-     * @param desc is the location where the earthquake happened
-     * @param  url is the time in milliseconds (from the Epoch) when the
-     *                           earthquake happened
+     * @param name is the name of the rep
+     * @param desc is the description of the rep
+     * @param  url is the url of the rep
      * @param url is the website URL to find more details about the earthquake
      */
     public Rep(String name, String desc, String url) {
@@ -42,27 +41,16 @@ public class Rep {
     }
 
     /**
-     * Returns the magnitude of the earthquake.
-     */
-
-    /**
-     * Returns the location of the earthquake.
+     * Returns the name of the rep.
      */
 
     public String getName(){
         return mName;
     }
     /**
-     * Returns the time of the earthquake.
+     * Returns the description of the rep.
      */
     public String getDesc(){
         return mDesc;
-    }
-
-    /**
-     * Returns the website URL to find more information about the earthquake.
-     */
-    public String getUrl() {
-        return mUrl;
     }
 }
