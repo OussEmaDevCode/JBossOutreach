@@ -25,7 +25,7 @@
     <!-- Refreshing Menu Item [CHAR LIMIT=NONE] -->
     <string name="Refresh_menu_item">Refresh</string>
    <!-- list view contributions text [CHAR LIMIT=NONE] -->
-    <string name="contrib_text">Contributions: </string>
+    <string name="contrib_text">Contributers</string>
     <!-- Text to display in the list when there are no contributers [CHAR LIMIT=NONE] -->
     <string name="no_contrib">No contributers found</string>
 </resources>

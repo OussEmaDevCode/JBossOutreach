@@ -96,13 +96,9 @@ public class RepActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Find the current rep that was clicked on
                 Rep currentRep = mAdapter.getItem(position);
-
-                // Convert the String URL into a URI object (to pass into the Intent constructor)
-                String url = "https://api.github.com/repos/JBossOutreach/" + currentRep.getName();
-                url = url + "/contributors";
-                // Create a new intent to view the rep URI
+                // Create a new intent to the next activity
                Intent i = new Intent(RepActivity.this, ContributersActivity.class);
-               i.putExtra("ContributersUrl",url);
+               i.putExtra("ContributersUrl",currentRep.getName());
 
                 // Send the intent to launch a new activity
                 RepActivity.this.startActivity(i);

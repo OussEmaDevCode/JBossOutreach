@@ -42,8 +42,13 @@ public class ContributersActivity extends AppCompatActivity
         setContentView(R.layout.activity_contributers);
         //getting the URL from the intent
         Intent i = getIntent();
-        GITHUB_REQUEST_URL = i.getStringExtra("ContributersUrl");
-
+        String repName = i.getStringExtra("ContributersUrl");
+        //building the request url
+        String url = "https://api.github.com/repos/JBossOutreach/" + repName;
+        url = url + "/contributors";
+        GITHUB_REQUEST_URL = url;
+        //setting the title of the activity to be the rep name
+        setTitle(repName);
         // Find a reference to the {@link ListView} in the layout
         ListView ContributersListView = (ListView) findViewById(R.id.list);
         // Find a reference to the emptyStateTextView in the layout
