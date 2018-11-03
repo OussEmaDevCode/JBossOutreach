@@ -161,9 +161,11 @@ public final class QueryUtilsContributers {
                 String name = currentContributer.getString("login");
                 // Extract the value for the key called "description"
                int contribs = currentContributer.getInt("contributions");
+                // Extract the value for the key called "description"
+                String iconUrl = currentContributer.getString("avatar_url");
 
                 // Create a new {@link Contributer} object with the name, description, url
-                Contributer contributer = new Contributer(name,contribs);
+                Contributer contributer = new Contributer(name,contribs,iconUrl);
                 // Add the new {@link Contributer} to the list of contributers.
                 contributers.add(contributer);
             }
