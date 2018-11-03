@@ -12,7 +12,7 @@ Pre-requisites
 
 Libraries
 -------------
-I did not used any library in this app
+-Picasso
 
 Useful Links
 -------------
