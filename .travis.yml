@@ -16,7 +16,11 @@ android:
 before_install:
   - yes | sdkmanager "platforms;android-28"
   - chmod +x ./gradlew
-
+  
+script:
+  - echo "Hello! This is Travis"
+  - ./gradlew build
+  
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
