@@ -5,6 +5,8 @@ Jboss Outreach App
 
 [![Build Status](https://travis-ci.org/OussEmaDevCode/JBossOutreach.svg?branch=master)](https://travis-ci.org/OussEmaDevCode/JBossOutreach)
 
+[![Build Status](https://ci.jenkins.io/job/Plugins/job/configuration-as-code-plugin/job/master/badge/icon)](https://ci.jenkins.io/job/Plugins/job/configuration-as-code-plugin/job/master/)
+
 This app displays a list of repositories of JBossOutreach organisation on github
 
 Pre-requisites
