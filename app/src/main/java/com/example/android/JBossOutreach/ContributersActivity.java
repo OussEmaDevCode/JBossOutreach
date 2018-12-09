@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,25 +24,49 @@ public class ContributersActivity extends AppCompatActivity
         implements LoaderCallbacks<List<Contributer>> {
 
     private static final String LOG_TAG = ContributersActivity.class.getName();
-
-    /** URL for Contributers data from GITHUB dataset */
-    private String GITHUB_REQUEST_URL ;
+    /**
+     * URL for Contributers data from GITHUB dataset
+     */
+    private String GITHUB_REQUEST_URL;
 
     /**
      * Constant value for the contributers loader ID.
      */
     private static final int Contributer_LOADER_ID = 2;
 
-    /** Adapter for the list of contributers */
+    /**
+     * Adapter for the list of contributers
+     */
     private ContributerAdapter mAdapter;
-    /** TextView that is displayed when the list is empty */
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyStateTextView;
-    /** View that is displayed when the activity is loading */
+    /**
+     * View that is displayed when the activity is loading
+     */
     private View loadingIndicator;
+    private CircularImageView firstPhoto;
+    private TextView firstName;
+
+    private CircularImageView secoundPhoto;
+    private TextView secoundName;
+
+    private CircularImageView thirdPhoto;
+    private TextView thirdName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contributers);
+        firstPhoto = (CircularImageView) findViewById(R.id.gold);
+        firstName = (TextView) findViewById(R.id.nameGold);
+
+        secoundPhoto = (CircularImageView) findViewById(R.id.silver);
+        secoundName = (TextView) findViewById(R.id.nameSilver);
+
+        thirdPhoto = (CircularImageView) findViewById(R.id.bronze);
+        thirdName = (TextView) findViewById(R.id.nameBronze);
         //getting the URL from the intent
         Intent i = getIntent();
         String repName = i.getStringExtra("ContributersUrl");
@@ -93,7 +120,7 @@ public class ContributersActivity extends AppCompatActivity
 
     @Override
     public Loader<List<Contributer>> onCreateLoader(int i, Bundle bundle) {
-       //creates a uri form a URL
+        //creates a uri form a URL
         Uri baseUri = Uri.parse(GITHUB_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
         //returns the loader with the new URL in it
@@ -111,7 +138,7 @@ public class ContributersActivity extends AppCompatActivity
 
         // Clear the adapter of previous Contributers data
         //mAdapter.clear();
-        if(!mAdapter.isEmpty()) {
+        if (!mAdapter.isEmpty()) {
             mAdapter.clear();
         }
 
@@ -119,10 +146,42 @@ public class ContributersActivity extends AppCompatActivity
         // data set. This will trigger the ListView to update.
         if (Contributers != null && !Contributers.isEmpty()) {
             mAdapter.addAll(Contributers);
+            //setting up the best contributers
+                Contributer first = mAdapter.getItem(0);
+                Picasso.get().load(first.getURL()).into(firstPhoto);
+                String nameFirst = first.getLogin();
+                firstName.setText(formatString(nameFirst));
 
+
+            if (mAdapter.getCount()>= 1) {
+                Contributer second = mAdapter.getItem(1);
+                Picasso.get().load(second.getURL()).into(secoundPhoto);
+                String nameSecond = second.getLogin();
+                secoundName.setText(formatString(nameSecond));
+
+                if (mAdapter.getCount() >= 2) {
+                    Contributer third = mAdapter.getItem(2);
+                    Picasso.get().load(third.getURL()).into(thirdPhoto);
+                    String namethird = third.getLogin();
+                    thirdName.setText(formatString(namethird));
+                }
+            }
         }
     }
 
+
+    private String formatString(String name) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < name.length(); i++) {
+            if (i > 0 && (i % 9 == 0)) {
+                sb.append("\n-");
+            }
+
+            sb.append(name.charAt(i));
+        }
+        return sb.toString();
+
+    }
 
     @Override
     public void onLoaderReset(Loader<List<Contributer>> loader) {
