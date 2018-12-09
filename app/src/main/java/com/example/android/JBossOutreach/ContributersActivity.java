@@ -55,10 +55,13 @@ public class ContributersActivity extends AppCompatActivity
     private CircularImageView thirdPhoto;
     private TextView thirdName;
 
+    private View podium;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contributers);
+        podium = (View) findViewById(R.id.podium);
+
         firstPhoto = (CircularImageView) findViewById(R.id.gold);
         firstName = (TextView) findViewById(R.id.nameGold);
 
@@ -146,25 +149,27 @@ public class ContributersActivity extends AppCompatActivity
         // data set. This will trigger the ListView to update.
         if (Contributers != null && !Contributers.isEmpty()) {
             mAdapter.addAll(Contributers);
-            //setting up the best contributers
+            if(mAdapter.getCount()> 2) {
+                //setting up the best contributers
                 Contributer first = mAdapter.getItem(0);
                 Picasso.get().load(first.getURL()).into(firstPhoto);
                 String nameFirst = first.getLogin();
                 firstName.setText(formatString(nameFirst));
 
 
-            if (mAdapter.getCount()>= 1) {
                 Contributer second = mAdapter.getItem(1);
                 Picasso.get().load(second.getURL()).into(secoundPhoto);
                 String nameSecond = second.getLogin();
                 secoundName.setText(formatString(nameSecond));
 
-                if (mAdapter.getCount() >= 2) {
-                    Contributer third = mAdapter.getItem(2);
-                    Picasso.get().load(third.getURL()).into(thirdPhoto);
-                    String namethird = third.getLogin();
-                    thirdName.setText(formatString(namethird));
-                }
+
+                Contributer third = mAdapter.getItem(2);
+                Picasso.get().load(third.getURL()).into(thirdPhoto);
+                String namethird = third.getLogin();
+                thirdName.setText(formatString(namethird));
+            }
+            else {
+                podium.setVisibility(View.GONE);
             }
         }
     }
