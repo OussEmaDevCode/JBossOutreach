@@ -16,11 +16,11 @@ Pre-requisites
 
 Libraries
 -------------
--Picasso
+- Picasso
 
 Useful Links
 -------------
-The youtube demo : https://www.youtube.com/watch?v=ftGJeZ0TBp8
+- The demo : https://photos.app.goo.gl/sU8hDjzsJr8QS1qS6
 
-the GCI task : https://codein.withgoogle.com/dashboard/task-instances/6049099376754688/
+- the GCI task : https://codein.withgoogle.com/dashboard/task-instances/6049099376754688/
 
